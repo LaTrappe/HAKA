@@ -26,7 +26,7 @@ Prerequisites:
 
 Enjoy!
 
-### Features
+## Features
 
 The following domains are supported:
 - Automations (toggle)
