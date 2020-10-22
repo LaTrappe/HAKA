@@ -1,4 +1,4 @@
-#HAKA!
+# HAKA!
 
 This is a first unofficial Home Assistant Kodi Addon (HAKA!).
 
@@ -6,7 +6,7 @@ Prerequisites:
 - Home Assistant 0.116 or higher (older versions have a different API)
 - Kodi 18
 
-##Installation
+## Installation
 
 1. Download the zip file.
 
@@ -26,7 +26,7 @@ Prerequisites:
 
 Enjoy!
 
-###Features
+### Features
 
 The following domains are supported:
 - Automations (toggle)
