@@ -78,8 +78,16 @@ msgid "Vacuum"
 msgstr "Stofzuiger"
 
 msgctxt "#30014"
-msgid "Open met groepen"
-msgstr ""
+msgid "Browse by group"
+msgstr "Open met groepen"
+
+msgctxt "#30015"
+msgid "Debug"
+msgstr "Debug"
+
+msgctxt "#30016"
+msgid "Enable debug logging"
+msgstr "Schakel debug logging in"
 
 msgctxt "#30020"
 msgid "Curr. Temp"

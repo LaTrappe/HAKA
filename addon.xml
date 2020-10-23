@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.program.homassistant" name="Home Assistant" version="1.0.0" provider-name="LaTrappe">
+<addon id="script.program.homassistant" name="Home Assistant" version="1.0.1" provider-name="LaTrappe">
 	<requires>
 		<import addon="xbmc.python" version="2.14.0"/>
 		<import addon="script.module.requests" version="2.9.1"/>
@@ -27,8 +27,13 @@
 			<screenshot>resources/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>
-v 1.0.0 (2020-10-21)
-- First version!
+2020-10-23	Version 1.0.1 
+- Debug logging added
+
+--------------------------
+
+2020-10-22	Version 1.0.0 
+- First release!
 		</news>
 	</extension>
 </addon>
