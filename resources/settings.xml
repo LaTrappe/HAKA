@@ -13,6 +13,9 @@
 		<setting id="importSensors" type="bool" label="30011" default="true" />
 		<setting id="importSwitches" type="bool" label="30012" default="true" />
 		<setting id="importVacuums" type="bool" label="30013" default="false" />
+	</category>
+	<category label="30015">
+		<setting id="logEnabled" type="bool" label="30016" default="false"/>
 	</category>	
 </settings>
 
