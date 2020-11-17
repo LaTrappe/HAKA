@@ -102,7 +102,7 @@ def getRequest(api_ext):
 	try:
 		log('Trying to make a get request to ' + api_base + api_ext)
 		r = requests.get(api_base + api_ext, headers=headers)
-		log('GetRequest status code is: ' + str(r.status_code))
+		log('GetRequest status code is: ' + str(r.status_code))		
 		if r.status_code == 401:
 			show_dialog(__addon__.getLocalizedString(30050)) #Error 401: Check your token
 		elif r.status_code == 405:
@@ -110,6 +110,7 @@ def getRequest(api_ext):
 		elif r.status_code == 200:
 			return r
 	except:
+		log('Status code error is: ' + str(r.raise_for_status()))
 		show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
 
 def postRequest(api_ext, entity_id):
