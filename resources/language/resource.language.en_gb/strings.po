@@ -78,7 +78,7 @@ msgid "Vacuum"
 msgstr ""
 
 msgctxt "#30014"
-msgid "Browse by group"
+msgid "Persons"
 msgstr ""
 
 msgctxt "#30015"
@@ -89,20 +89,32 @@ msgctxt "#30016"
 msgid "Enable debug logging"
 msgstr ""
 
+msgctxt "#30017"
+msgid "Other"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Show HAKA! favourites in main menu"
+msgstr ""
+
 msgctxt "#30020"
-msgid "Curr. Temp"
+msgid "Curr. temp: "
 msgstr ""
 
 msgctxt "#30021"
-msgid "Brightness"
+msgid "Brightness: "
 msgstr ""
 
 msgctxt "#30022"
-msgid "Last triggered"
+msgid "Last triggered: "
 msgstr ""
 
 msgctxt "#30023"
-msgid "HA Version"
+msgid "HA Version: "
+msgstr ""
+
+msgctxt "#30024"
+msgid "Last changed: "
 msgstr ""
 
 msgctxt "#30040"
@@ -135,4 +147,32 @@ msgstr ""
 
 msgctxt "#30053"
 msgid "Configure server in the addon settings menu first."
+msgstr ""
+
+msgctxt "#30054"
+msgid " is added to your HAKA! favourites."
+msgstr ""
+
+msgctxt "#30055"
+msgid " is removed from your HAKA! favourites."
+msgstr ""
+
+msgctxt "#30056"
+msgid "Something went wrong opening your HAKA! favourites. Check the file in the addon folder or check the logs."
+msgstr ""
+
+msgctxt "#30057"
+msgid "It seems you do no have any HAKA! favourites yet. Use the context menu to add some."
+msgstr ""
+
+msgctxt "#30058"
+msgid " is already a HAKA! favourite."
+msgstr ""
+
+msgctxt "#30070"
+msgid "Add to HAKA! favourites"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Remove from HAKA! favourites"
 msgstr ""
