@@ -1,4 +1,4 @@
-#HAKA!
+**HAKA!**
 
 This is a first unofficial Home Assistant Kodi Addon (HAKA!).
 
@@ -6,7 +6,7 @@ Prerequisites:
 - Home Assistant 2021.2.1 or higher (older versions have a different API)
 - Kodi 18
 
-##Installation
+**Installation**
 
 1. Download the zip file.
 
@@ -26,16 +26,22 @@ Prerequisites:
 
 Enjoy!
 
-###Features
+**Features**
 
 The following domains are supported:
 - Automations (toggle)
 - Climate (toggle)
 - Group (toggle) 
 - Light (toggle)
+- Persons (view)
 - Scene (turn on)
 - Script (turn on)
 - Sensor (no action)
 - Switch (toggle)
 - Vacuum (start, stop, return to base, locate)
 
+**Haka! Favorites**
+
+Add home assistant entities in a favorites folder which can be added to Kodi main menu in form of tiles, widget or whatever you want to name them. See the example of HAKA! favorites when using the Embuary skin below.
+
+![alt text](https://github.com/LaTrappe/HAKA/blob/1.1.0/screenshot-04.png?raw=true)
