@@ -1,6 +1,6 @@
 **HAKA!**
 
-This is a unofficial Home Assistant Kodi Addon (HAKA!).
+This is an unofficial Home Assistant Kodi Addon (HAKA!)
 
 ![HAKA! Main menu](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-01.jpg)
 
