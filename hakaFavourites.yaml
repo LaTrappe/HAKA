@@ -1,0 +1,24 @@
+- domain: climate
+  entity_id: climate.thermostat
+  friendly_name: Thermostat
+- domain: light
+  entity_id: light.banklampjes
+  friendly_name: Banklampjes
+- domain: light
+  entity_id: light.booglamp
+  friendly_name: Booglamp
+- domain: light
+  entity_id: light.keukenverlichting
+  friendly_name: Keukenverlichting
+- domain: scene
+  entity_id: scene.low_light
+  friendly_name: Low Light
+- domain: scene
+  entity_id: scene.mellow
+  friendly_name: Mellow
+- domain: scene
+  entity_id: scene.normal_light
+  friendly_name: Normal light
+- domain: scene
+  entity_id: scene.jasper
+  friendly_name: TV-Mode
