@@ -49,6 +49,7 @@ Add home assistant entities in a favorites folder which can be added to Kodi mai
 ![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-04.jpg)
 
 **Change log**
+
 Version 1.1.0 (2021-02-21)
 - HAKA! Favorites section added (add items via context menu)
 - Extra sensor icons and sensor attributes as label
