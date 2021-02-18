@@ -2,6 +2,8 @@
 
 This is a first unofficial Home Assistant Kodi Addon (HAKA!).
 
+![HAKA! Main menu](https://raw.githu9busercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-01.jpg)
+
 Prerequisites:
 - Home Assistant 2021.2.1 or higher (older versions have a different API)
 - Kodi 18
