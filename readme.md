@@ -58,12 +58,8 @@ Version 1.1.0 (2021-02-21)
 - Fixed issue: Items in Kodi main menu keep refreshing
 - Fixed issue: Not ascii characters give errors when generating label
 
----------------------------------------------------------------------
-
 Version 1.0.1 (2020-10-23)
 - Debug logging added
-
----------------------------------------------------------------------
 
 Version 1.0.0 (2020-10-22)
 - First release!
