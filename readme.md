@@ -44,4 +44,4 @@ The following domains are supported:
 
 Add home assistant entities in a favorites folder which can be added to Kodi main menu in form of tiles, widget or whatever you want to name them. See the example of HAKA! favorites when using the Embuary skin below.
 
-![alt text](https://raw.githubusercontent.com/LaTrappe/HAKA/1.1.0/resources/screenshots/screenshot-04.jpg)
+![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-04.jpg)
