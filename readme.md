@@ -1,6 +1,6 @@
 **HAKA!**
 
-This is a first unofficial Home Assistant Kodi Addon (HAKA!).
+This is a unofficial Home Assistant Kodi Addon (HAKA!).
 
 ![HAKA! Main menu](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-01.jpg)
 
@@ -22,9 +22,9 @@ Prerequisites:
 
 6. Enter your Home Assistant IP and port (i.e. https://myfancypansyhainstallation.duckdns.org:8123)
 
-7. Enter to token obtained in step four (don't forget to release the pigeon if you used one)
+7. Enter the token obtained in step four (don't forget to release the pigeon if you used one)
 
-8. Set  up the domains you would like to browse from your couch. 
+8. Set up the domains you would like to browse from your couch. 
 
 Enjoy!
 
@@ -42,8 +42,28 @@ The following domains are supported:
 - Switch (toggle)
 - Vacuum (start, stop, return to base, locate)
 
-**Haka! Favorites**
+**HAKA! Favorites**
 
 Add home assistant entities in a favorites folder which can be added to Kodi main menu in form of tiles, widget or whatever you want to name them. See the example of HAKA! favorites when using the Embuary skin below.
 
 ![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-04.jpg)
+
+**Change log**
+Version 1.1.0 (2021-02-21)
+- HAKA! Favorites section added (add items via context menu)
+- Extra sensor icons and sensor attributes as label
+- Persons domain added
+- Navigate to settings from within addon menu
+- Sort items by friendly name by default
+- Fixed issue: Items in Kodi main menu keep refreshing
+- Fixed issue: Not ascii characters give errors when generating label
+
+---------------------------------------------------------------------
+
+Version 1.0.1 (2020-10-23)
+- Debug logging added
+
+---------------------------------------------------------------------
+
+Version 1.0.0 (2020-10-22)
+- First release!
