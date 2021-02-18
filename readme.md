@@ -33,7 +33,7 @@ The following domains are supported:
 - Climate (toggle)
 - Group (toggle) 
 - Light (toggle)
-- Persons (view)
+- Persons (no action)
 - Scene (turn on)
 - Script (turn on)
 - Sensor (no action)
