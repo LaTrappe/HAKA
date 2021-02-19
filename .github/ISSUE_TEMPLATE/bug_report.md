@@ -26,6 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Kodi version [e.g. 18.5]
+ - Home Assistant installation description [e.g. version / platform / local via dns service]
  - HAKA version [e.g. 1.0.0]
 
 **Additional context**
