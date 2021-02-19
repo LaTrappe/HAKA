@@ -1,7 +1,7 @@
 <settings>
 	<category label="30001">
-		<setting id="haServer" type="text" label="30002" default="https://myfancehainstallation.duckdns.org:8123" />
-		<setting id="haToken" type="text" label="30003" default=""/>
+		<setting id="haServer" type="text" label="30002" default="https://myfancyhainstallation.duckdns.org:8123"/>
+		<setting id="haToken" type="text" label="30003"/>
 	</category>
 	<category label="30004">
 		<setting id="importAutomations" type="bool" label="30005" default="true" />
