@@ -1,7 +1,7 @@
 <settings>
 	<category label="30001">
 		<setting id="haServer" type="text" label="30002" default="https://myfancehainstallation.duckdns.org:8123" />
-		<setting id="haToken" type="text" label="30003" default="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI3ZDFiYmM3NjcxNTk0MDI3OGVkNmI3MzEyNjMwY2Y1MCIsImlhdCI6MTYxMzQwOTY2NSwiZXhwIjoxOTI4NzY5NjY1fQ.U5551M60j8FBMreRf7Bu2uvt-QAYiP612LYwPuoIr9M"/>
+		<setting id="haToken" type="text" label="30003" default=""/>
 	</category>
 	<category label="30004">
 		<setting id="importAutomations" type="bool" label="30005" default="true" />
