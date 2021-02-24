@@ -1,24 +1,24 @@
 import os
 import sys
 import urllib
-import urlparse
+import urllib.parse
 
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
 from xbmc import log as xbmc_log
+
 import requests
-import json
 import yaml
 import calendar
 import time
-from urlparse import parse_qsl
+from urllib.parse import parse_qsl
 from datetime import datetime
 import iso8601
 
 base_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
-args = urlparse.parse_qs(sys.argv[2][1:])
+args = urllib.parse.parse_qs(sys.argv[2][1:])
 
 __addon__ = xbmcaddon.Addon()
 __addonname__ = __addon__.getAddonInfo('name')
@@ -43,7 +43,7 @@ api_base = haServer + '/api'
 headers = {'Authorization': 'Bearer ' + haToken, 'Content-Type': 'application/json'}
 
 def build_url(query):
-    return base_url + '?' + urllib.urlencode(query)
+	return base_url + '?' + urllib.parse.urlencode(query)
 
 def utc_to_local(utc_dt):
 	# get integer timestamp to avoid precision lost
@@ -68,15 +68,15 @@ def parse_dateTime(event_date):
 	return parse_date(event_date) + ' ' + parse_time(event_date)
 
 def have_credentials():
-    return haServer and haToken
+	return haServer and haToken
 
 def show_dialog(message):
 	xbmcgui.Dialog().ok(__addonname__, message)
 	
-def log(txt, loglevel=xbmc.LOGNOTICE): #https://forum.kodi.tv/showthread.php?tid=196442
-    if __addon__.getSetting( "logEnabled" ) == "true":
-        message = u'%s: %s' % (__addonid__, txt)
-        xbmc.log(msg=message.encode("utf-8"), level=loglevel)
+def log(txt, loglevel=xbmc.LOGWARNING):
+	if __addon__.getSetting( "logEnabled" ) == "true":
+		message = u'%s: %s' % (__addonid__, txt)
+		xbmc.log(msg=message, level=loglevel)
 
 def read_favourites():
 	favourites = []
@@ -88,13 +88,15 @@ def read_favourites():
 		except:
 			log("Something went wrong opening or parsing hakaFavourites.yaml")
 			show_dialog(__addon__.getLocalizedString(30056))
+			favourites = []
 	else:
 		log("hakaFavourites.yaml seems to be 0 bytes")
+		favourites = []
 	return favourites
 	
 def write_favourite(entity_list, open_param):
 	file = open(fileHakaFavourites, open_param)
-	file.write(yaml.dump(entity_list, default_flow_style=False))
+	file.write(yaml.dump(entity_list))
 	file.close()
 
 def importDomainSettings():
@@ -124,6 +126,11 @@ def getRequest(api_ext):
 	try:
 		log('Trying to make a get request to ' + api_base + api_ext)
 		r = requests.get(api_base + api_ext, headers=headers)
+		log(r.json())
+		return r.json()
+	except:
+		log('Status code error is: ' + str(r.raise_for_status()))
+		show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online	
 		log('GetRequest status code is: ' + str(r.status_code))		
 		if r.status_code == 401:
 			show_dialog(__addon__.getLocalizedString(30050)) #Error 401: Check your token
@@ -131,10 +138,6 @@ def getRequest(api_ext):
 			show_dialog(__addon__.getLocalizedString(30051)) #Error 405: Method not allowed
 		elif r.status_code == 200:
 			return r
-	except:
-		log('Status code error is: ' + str(r.raise_for_status()))
-		show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
-
 
 
 def postRequest(api_ext, entity_id):
@@ -158,10 +161,9 @@ def browseByDomain():
 	#Test connection / get version
 	response = getRequest('/config')
 	if response is not None:
-		log('Response from server: ' + str(response.content))
+		log('Response from server: ' + str(response))
 	else:
 		log('Response from server is NONE!')
-	parsedResponse = json.loads(response.text)
 
 	#Compose folder list based on addon settings
 	for d in range(len(haDomainSettings)):
@@ -183,16 +185,16 @@ def browseByDomain():
 	#Add the version number as folder
 	url = build_url({'mode': 'config'})
 	icon = os.path.join(imgIconResourcePath, 'config.png')
-	li = xbmcgui.ListItem(__addon__.getLocalizedString(30023) + ': ' + parsedResponse['version'])
+	li = xbmcgui.ListItem(__addon__.getLocalizedString(30023) + ': ' + response['version'])
 	li.setArt({'icon': icon, 'fanart' : os.path.join(imgFanartResourcePath,'fanart.jpg')})
 	listing.append((url, li, isFolder))
 
 	xbmcplugin.addDirectoryItems(addon_handle, listing, len(listing))
 	xbmcplugin.endOfDirectory(addon_handle)
-    
+	
 def loadFolder(folderType, domain):
-	r = getRequest('/states')
-	response = json.loads(r.text)
+	response = getRequest('/states')
+
 	searchKey = ''
 
 	if folderType == 'domain':
@@ -202,13 +204,13 @@ def loadFolder(folderType, domain):
 	if folderType == 'favourites' or folderType == 'widgets':
 		favourites = read_favourites()
 		if len(favourites) > 0:
-			for entity in read_favourites():
+			for entity in favourites:
 				searchKey = entity['entity_id']
 				domain = entity['domain']
 				createFolderList(searchKey, response, domain, folderType)
 		else:
 			show_dialog(__addon__.getLocalizedString(30057))
-
+			browseByDomain()
 	if domain != 'vacuum':
 		xbmcplugin.addSortMethod(addon_handle, xbmcplugin.SORT_METHOD_LABEL)
 	xbmcplugin.endOfDirectory(addon_handle)
@@ -228,9 +230,9 @@ def createFolderList(searchKey, response, domain, folderType):
 	for entity in range(len(response)):
 		if searchKey in response[entity]['entity_id']:
 			contextMenuItems = []
-			entity_id = (response[entity]['entity_id'])
-			entity_state = (response[entity]['state']).encode('utf-8')
-			label = (response[entity]['attributes']['friendly_name']).encode('utf-8')
+			entity_id = response[entity]['entity_id']
+			entity_state =response[entity]['state']
+			label = response[entity]['attributes']['friendly_name']
 			icon = os.path.join(imgIconResourcePath) + '\\' + domain + '.png'
 
 			if domain == 'automation':
@@ -314,7 +316,7 @@ def createFolderList(searchKey, response, domain, folderType):
 					icon = os.path.join(imgIconResourcePath,'sensor.png')
 
 				if 'unit_of_measurement' in response[entity]['attributes']:
-					label = label + response[entity]['attributes']['unit_of_measurement'].encode('utf-8') 
+					label = label + response[entity]['attributes']['unit_of_measurement']
 				label = label +  '[/LIGHT]'
 
 			elif domain == 'switch':
@@ -343,7 +345,6 @@ def createFolderList(searchKey, response, domain, folderType):
 
 			if domain != 'vacuum':
 				url = build_url({'mode': 'service', 'domain': domain, 'entity_id': entity_id, 'state' : entity_state})
-
 				li = xbmcgui.ListItem(label)
 
 				if folderType == 'domain':

@@ -28,7 +28,8 @@
 			<screenshot>resources/screenshot-04.jpg</screenshot>			
 		</assets>
 		<news>
-Version 1.1.0 (2021-02-21)
+Version 1.1.0 (2021-02-24)
+- Kodi Matrix support
 - HAKA! Favorites section added (add items via context menu)
 - Extra sensor icons and sensor attributes as label
 - Persons domain added
