@@ -6,7 +6,7 @@ This is an unofficial Home Assistant Kodi Addon (HAKA!)
 
 Prerequisites:
 - Home Assistant 2021.2.1 or higher (older versions have a different API)
-- Kodi Matrix ([For Kodi Leia click here.](https://github.com/LaTrappe/HAKA)
+- Kodi Matrix ([For Kodi Leia click here.])(https://github.com/LaTrappe/HAKA)
 
 **Installation**
 
