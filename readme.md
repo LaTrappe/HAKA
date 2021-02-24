@@ -10,7 +10,7 @@ Prerequisites:
 
 **Installation**
 
-1. [Download the zip file.](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0.zip)
+1. [Download the zip file.](https://github.com/LaTrappe/HAKA/raw/Matrix/script.program.homeassistant_1.1.0_Matrix.zip)
 
 2. In Home Assistant navigate to your profile (bottom icon in the side-menu).
 
