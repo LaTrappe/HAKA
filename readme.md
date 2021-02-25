@@ -50,7 +50,8 @@ Add home assistant entities in a favorites folder which can be added to Kodi mai
 
 **Change log**
 
-Version 1.1.0 (2021-02-21)
+Version 1.1.0 (2021-02-24)
+- Kodi Matrix support
 - HAKA! Favorites section added (add items via context menu)
 - Extra sensor icons and sensor attributes as label
 - Persons domain added
