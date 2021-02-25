@@ -2,16 +2,16 @@
 
 This is an unofficial Home Assistant Kodi Addon (HAKA!)
 
-![HAKA! Main menu](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-01.jpg)
+![HAKA! Main menu](https://raw.githubusercontent.com/LaTrappe/HAKA/main/screenshots/screenshot-01.jpg)
 
 Prerequisites:
 - Home Assistant 2021.2.1 or higher (older versions have a different API)
-- Kodi Matrix ([For Kodi Leia click here](https://github.com/LaTrappe/HAKA))
+- Kodi Leia / Kodi Matrix
+
 
 **Installation**
 
-1. [Download the zip file.](https://github.com/LaTrappe/HAKA/raw/Matrix/script.program.homeassistant_1.1.0_Matrix.zip)
-
+1. Download the zip file ([Kodi Leia](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_leia.zip) / [Kodi Matrix](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_matrix.zip))
 2. In Home Assistant navigate to your profile (bottom icon in the side-menu).
 
 3. Scroll down and generate a long life token (long live the tokens!).
@@ -46,7 +46,7 @@ The following domains are supported:
 
 Add home assistant entities in a favorites folder which can be added to Kodi main menu in form of tiles, widget or whatever you want to name them. See the example of HAKA! favorites when using the Embuary skin below.
 
-![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/resources/screenshots/screenshot-04.jpg)
+![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/screenshots/screenshot-04.jpg)
 
 **Change log**
 
