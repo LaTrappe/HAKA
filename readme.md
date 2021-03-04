@@ -11,7 +11,8 @@ Prerequisites:
 
 **Installation**
 
-1. Download the zip file ([Kodi Leia](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_leia.zip) / [Kodi Matrix](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_matrix.zip))
+1. Install the addon from the Kodi official repository (Kodi Matrix), or download the zip file ([Kodi Leia](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_leia.zip))
+
 2. In Home Assistant navigate to your profile (bottom icon in the side-menu).
 
 3. Scroll down and generate a long life token (long live the tokens!).
