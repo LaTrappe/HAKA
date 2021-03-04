@@ -11,7 +11,7 @@ Prerequisites:
 
 **Installation**
 
-1. Install the addon from the Kodi official repository (Kodi Matrix), or download the zip file ([Kodi Leia](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_leia.zip))
+1. Install the addon from the Kodi official repository, under 'programs' (Kodi Matrix), or download the zip file ([Kodi Leia](https://github.com/LaTrappe/HAKA/raw/main/script.program.homeassistant_1.1.0_leia.zip))
 
 2. In Home Assistant navigate to your profile (bottom icon in the side-menu).
 
