@@ -1,0 +1,3 @@
+- domain: light
+  entity_id: light.banklampjes
+  friendly_name: Banklampjes
