@@ -51,6 +51,7 @@ Add home assistant entities in a favorites folder which can be added to Kodi mai
 ![HAKA! Favourites in Embuary](https://raw.githubusercontent.com/LaTrappe/HAKA/main/screenshots/screenshot-04.jpg)
 
 **Change log**
+
 Version 1.2.0 (2021-05-10)
 - Camera support (view picture of HA camera's)
 - Fan support (toggle)
