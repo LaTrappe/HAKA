@@ -1,0 +1,206 @@
+# XBMC Media Center language file
+# Addon Name: Home Assistant
+# Addon id: script.program.homeassistant
+# Addon version: 1.0.0
+# Addon Provider: LaTrappe
+msgid ""
+msgstr ""
+"Project-Id-Version: script.program.homeassistant\n"
+"Report-Msgid-Bugs-To: jose1711@gmail.com\n"
+"POT-Creation-Date: 2020-10-21 13:29+0000\n"
+"PO-Revision-Date: 2024-02-18 23:26+0100\n"
+"Last-Translator: jose1711@gmail.com\n"
+"Language-Team: LANGUAGE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgctxt "Addon Summary"
+msgid "Switching your home with Kodi"
+msgstr "Ovládajte vašu domácnosť pomocou Kodi"
+
+msgctxt "Addon Description"
+msgid "This is a first unofficial Home Assistant Kodi Addon (HAKA!)."
+msgstr "Toto je prvý neoficiálny Home Assistant doplnok pre Kodi (HAKA!)"
+
+msgctxt "#30001"
+msgid "Connection"
+msgstr "Spojenie"
+
+msgctxt "#30002"
+msgid "Home Assistant server"
+msgstr "Home Assistant server"
+
+msgctxt "#30003"
+msgid "Long life token"
+msgstr "Token s dlhou životnosťou"
+
+msgctxt "#30004"
+msgid "Domains"
+msgstr "Domény"
+
+msgctxt "#30005"
+msgid "Automations"
+msgstr "Automatizácie"
+
+msgctxt "#30006"
+msgid "Climate"
+msgstr "Klimatizácia"
+
+msgctxt "#30007"
+msgid "Groups"
+msgstr "Skupiny"
+
+msgctxt "#30008"
+msgid "Lights"
+msgstr "Svetlá"
+
+msgctxt "#30009"
+msgid "Scenes"
+msgstr "Scény"
+
+msgctxt "#30010"
+msgid "Scripts"
+msgstr "Skripty"
+
+msgctxt "#30011"
+msgid "Sensors"
+msgstr "Senzory"
+
+msgctxt "#30012"
+msgid "Switches"
+msgstr "Prepínače"
+
+msgctxt "#30013"
+msgid "Vacuum"
+msgstr "Vysávač"
+
+msgctxt "#30014"
+msgid "Persons"
+msgstr "Osoby"
+
+msgctxt "#30015"
+msgid "Debug"
+msgstr "Ladenie"
+
+msgctxt "#30016"
+msgid "Enable debug logging"
+msgstr "Povoliť záznamy ladenia"
+
+msgctxt "#30017"
+msgid "Other"
+msgstr "Ďalšie"
+
+msgctxt "#30018"
+msgid "Show HAKA! favourites in main menu"
+msgstr "Zobraziť záložky HAKA! v hlavnej ponuke"
+
+msgctxt "#30020"
+msgid "Curr. temp: "
+msgstr "Akt. teplota: "
+
+msgctxt "#30021"
+msgid "Brightness: "
+msgstr "Jas: "
+
+msgctxt "#30022"
+msgid "Last triggered: "
+msgstr "Posledná aktivácia: "
+
+msgctxt "#30023"
+msgid "HA Version: "
+msgstr "Verzia HA: "
+
+msgctxt "#30024"
+msgid "Last changed: "
+msgstr "Posledná zmena: "
+
+msgctxt "#30025"
+msgid "State: "
+msgstr "Stav: "
+
+msgctxt "#30026"
+msgid "Battery: "
+msgstr "Batéria: "
+
+msgctxt "#30040"
+msgid "Start"
+msgstr "Spustiť"
+
+msgctxt "#30041"
+msgid "Stop"
+msgstr "Zastaviť"
+
+msgctxt "#30042"
+msgid "Return to base"
+msgstr "Návrat na základňu"
+
+msgctxt "#30043"
+msgid "Locate"
+msgstr "Nájsť"
+
+msgctxt "#30050"
+msgid "Error 401: Check your token."
+msgstr "Chyba 401: Skontrolujte váš token."
+
+msgctxt "#30051"
+msgid "Error 405: Method not allowed."
+msgstr "Chyba 405: Metóda nie je povolená."
+
+msgctxt "#30052"
+msgid "Unknown error: Check IP address or if server is online."
+msgstr "Neznáma chyba: Skontrolujte IP adresu alebo pripojenie servera."
+
+msgctxt "#30053"
+msgid "Configure server in the addon settings menu first."
+msgstr "Najprv v nastaveniach doplnku nakonfigurujte server."
+
+msgctxt "#30054"
+msgid " is added to your HAKA! favourites."
+msgstr " bol pridaný do vašich záložiek HAKA!"
+
+msgctxt "#30055"
+msgid " is removed from your HAKA! favourites."
+msgstr " bol odstránený z vašich záložiek HAKA!"
+
+msgctxt "#30056"
+msgid "Something went wrong opening your HAKA! favourites. Check the file in the addon folder or check the logs."
+msgstr "Niečo sa pokazilo počas otvárania vašich HAKA! záložiek. Skontrolujte súbor v priečinku doplnku alebo nazrite do logov."
+
+msgctxt "#30057"
+msgid "It seems you do no have any HAKA! favourites yet. Use the context menu to add some."
+msgstr "Zdá sa, že ste zatiaľ nevytvorili žiadnu záložku HAKA! Na ich pridanie použite kontextovú ponuku."
+
+msgctxt "#30058"
+msgid " is already a HAKA! favourite."
+msgstr " už je medzi záložkami HAKA!"
+
+msgctxt "#30070"
+msgid "Add to HAKA! favourites"
+msgstr "Pridať do záložiek HAKA!"
+
+msgctxt "#30071"
+msgid "Remove from HAKA! favourites"
+msgstr "Odstrániť zo záložiek HAKA!"
+
+msgctxt "#30080"
+msgid "Cameras"
+msgstr "Kamery"
+
+msgctxt "#30081"
+msgid "Fans"
+msgstr "Ventilátory"
+
+msgctxt "#30082"
+msgid "Favourites"
+msgstr "Záložky"
+
+msgctxt "#30090"
+msgid "Home"
+msgstr "Doma"
+
+msgctxt "#30091"
+msgid "Not home"
+msgstr "Mimo domu"
