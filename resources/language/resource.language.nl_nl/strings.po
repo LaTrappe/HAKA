@@ -117,6 +117,14 @@ msgctxt "#30024"
 msgid "Last changed: "
 msgstr "Laatst veranderd: "
 
+msgctxt "#30025"
+msgid "State: "
+msgstr "Status: "
+
+msgctxt "#30026"
+msgid "Battery: "
+msgstr "Batterij: "
+
 msgctxt "#30040"
 msgid "Start"
 msgstr "Start"
@@ -176,3 +184,23 @@ msgstr "Toevoegen aan HAKA! favorieten"
 msgctxt "#30071"
 msgid "Remove from HAKA! favourites"
 msgstr "Verwijder uit HAKA! favorieten"
+
+msgctxt "#30080"
+msgid "Cameras"
+msgstr "Cameras"
+
+msgctxt "#30081"
+msgid "Fans"
+msgstr "Ventilatoren"
+
+msgctxt "#30082"
+msgid "Favourites"
+msgstr "Favourieten"
+
+msgctxt "#30090"
+msgid "Home"
+msgstr "Thuis"
+
+msgctxt "#30091"
+msgid "Not home"
+msgstr "Afwezig"

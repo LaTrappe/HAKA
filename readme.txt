@@ -24,7 +24,7 @@ Installation
 
 7. Enter to token obtained in step four (don't forget to release the pigeon if you used one)
 
-8. Set  up the domains you would like to browse from your couch. 
+8. Set  up the domains you would like to browse from your couch.
 
 Enjoy!
 
@@ -35,11 +35,10 @@ Features:
 The following domains are supported:
 - Automations (toggle)
 - Climate (toggle)
-- Group (toggle) 
+- Group (toggle)
 - Light (toggle)
 - Scene (turn on)
 - Script (turn on)
 - Sensor (no action)
 - Switch (toggle)
 - Vacuum (start, stop, return to base, locate)
-

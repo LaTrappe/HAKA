@@ -117,6 +117,14 @@ msgctxt "#30024"
 msgid "Last changed: "
 msgstr ""
 
+msgctxt "#30025"
+msgid "State: "
+msgstr ""
+
+msgctxt "#30026"
+msgid "Battery: "
+msgstr ""
+
 msgctxt "#30040"
 msgid "Start"
 msgstr ""
@@ -175,4 +183,24 @@ msgstr ""
 
 msgctxt "#30071"
 msgid "Remove from HAKA! favourites"
+msgstr ""
+
+msgctxt "#30080"
+msgid "Cameras"
+msgstr ""
+
+msgctxt "#30081"
+msgid "Fans"
+msgstr ""
+
+msgctxt "#30082"
+msgid "Favourites"
+msgstr ""
+
+msgctxt "#30090"
+msgid "Home"
+msgstr ""
+
+msgctxt "#30091"
+msgid "Not home"
 msgstr ""

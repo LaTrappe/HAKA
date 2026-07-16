@@ -1,6 +1,6 @@
 **HAKA!**
 
-This is an unofficial Home Assistant Kodi Addon (HAKA!)
+This is an unofficial Home Assistant Kodi Addon (HAKA!). The addon allows users with a Home Assistant installation to browse their Home Assistant entities (such as lights, switches and sensors) in a Kodi directory structure. Depending on the type of device actions are possible such as toggling lights, switches or start a robotic vacuum.
 
 ![HAKA! Main menu](https://raw.githubusercontent.com/LaTrappe/HAKA/main/screenshots/screenshot-01.jpg)
 
@@ -24,7 +24,7 @@ Prerequisites:
 
 7. Enter the token obtained in step four (don't forget to release the pigeon if you used one)
 
-8. Set up the domains you would like to browse from your couch. 
+8. Set up the domains you would like to browse from your couch.
 
 Enjoy!
 
@@ -33,7 +33,7 @@ Enjoy!
 The following domains are supported:
 - Automations (toggle)
 - Climate (toggle)
-- Group (toggle) 
+- Group (toggle)
 - Light (toggle)
 - Persons (no action)
 - Scene (turn on)
@@ -50,8 +50,16 @@ Add home assistant entities in a favorites folder which can be added to Kodi mai
 
 **Change log**
 
-Version 1.1.0 (2021-02-24)
-- Kodi Matrix support
+Version 1.3.0 (2026-07-16)
+- Support for playing camera stream
+- Code cleanup
+
+Version 1.2.0 (2021-05-10)
+- Camera support (view picture of HA camera's)
+- Fan support (toggle)
+- Fixed issue: Crash when friendly name is not available
+
+Version 1.1.0 (2021-02-21)
 - HAKA! Favorites section added (add items via context menu)
 - Extra sensor icons and sensor attributes as label
 - Persons domain added
