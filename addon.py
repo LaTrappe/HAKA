@@ -420,7 +420,9 @@ def createFolderList(searchKey, response, domain, folderType):
                     icon = os.path.join(imgIconResourcePath,'switch_off.png')
 
             elif domain == 'vacuum': # Each for Start / Stop / Return to base / Locate
-                label = '[B]' + label + '[/B][CR][LIGHT] ' + __addon__.getLocalizedString(30025) + response[entity]['attributes']['status'] + ' - ' + __addon__.getLocalizedString(30026) + str(response[entity]['attributes']['battery_level']) + '[/LIGHT]'
+                vacuumStatus = response[entity]['attributes'].get('status', entity_state)
+                vacuumBattery = response[entity]['attributes'].get('battery_level', '?')
+                label = '[B]' + label + '[/B][CR][LIGHT] ' + __addon__.getLocalizedString(30025) + str(vacuumStatus) + ' - ' + __addon__.getLocalizedString(30026) + str(vacuumBattery) + '[/LIGHT]'
                 url = build_url({'mode': 'service', 'domain': domain, 'entity_id': entity_id, 'state' : entity_state, 'service': 'toggle'})
                 li = xbmcgui.ListItem(label)
                 li.setArt({'icon': icon, 'fanart' : os.path.join(imgFanartResourcePath,'fanart.jpg'), 'poster': icon})
