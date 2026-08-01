@@ -350,7 +350,7 @@ def createFolderList(searchKey, response, domain, folderType):
 
             elif domain == 'light':
                 if entity_state == 'on':
-                    if 'brightness' in response[entity]['attributes']:
+                    if response[entity]['attributes'].get('brightness') is not None:
                         brightness = int(round(float(response[entity]['attributes']['brightness']) / 2.56))
                         label = label + markup + __addon__.getLocalizedString(30021) + str(brightness) + '%[/LIGHT]'
                 else:
