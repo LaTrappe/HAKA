@@ -371,10 +371,10 @@ def createFolderList(searchKey, response, domain, folderType):
                 li = xbmcgui.ListItem(label)
 
                 if folderType == 'domain':
-                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'addFav', 'name': (response[entity]['attributes']['friendly_name']).encode('utf-8'), 'entity_id': entity_id, 'domain': domain,}))
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'addFav', 'name': (response[entity]['attributes'].get('friendly_name', entity_id)).encode('utf-8'), 'entity_id': entity_id, 'domain': domain,}))
                     contextMenuItems.append([__addon__.getLocalizedString(30070), cmd ])
                 elif folderType == 'favourites' or folderType == 'widgets':
-                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'remFav', 'name': (response[entity]['attributes']['friendly_name']).encode('utf-8'), 'entity_id': entity_id, 'domain': domain}))
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'remFav', 'name': (response[entity]['attributes'].get('friendly_name', entity_id)).encode('utf-8'), 'entity_id': entity_id, 'domain': domain}))
                     contextMenuItems.append([__addon__.getLocalizedString(30071), cmd ])
                 li.addContextMenuItems(contextMenuItems)
                 li.setProperty('IsPlayable', 'false')
