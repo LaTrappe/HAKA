@@ -1,3 +1,8 @@
+Version 1.3.2 (2026-08-01)
+- Added context menu actions to set light brightness and colour, and to set climate HVAC mode and target temperature
+
+---------------------------------------------------------------------
+
 Version 1.3.1 (2026-08-01)
 - Fixed issue: Crash when adding/removing a favourite for an entity without a friendly name (e.g. restored/unavailable entities)
 
@@ -6,6 +11,7 @@ Version 1.3.1 (2026-08-01)
 Version 1.3.0 (2026-07-16)
 - Support for playing camera stream
 - Code cleanup
+
 ---------------------------------------------------------------------
 
 Version 1.2.0 (2021-10-12)
