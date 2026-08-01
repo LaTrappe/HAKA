@@ -1,3 +1,9 @@
+Version 1.3.3 (2026-08-01)
+- Fixed issue: Crash when a light is on but reports no brightness value
+- Fixed issue: Crash when a vacuum entity does not expose status/battery_level attributes
+
+---------------------------------------------------------------------
+
 Version 1.3.2 (2026-08-01)
 - Added context menu actions to set light brightness and colour, and to set climate HVAC mode and target temperature
 
