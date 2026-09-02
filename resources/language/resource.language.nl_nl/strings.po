@@ -260,3 +260,11 @@ msgstr "Paars"
 msgctxt "#30105"
 msgid "Pink"
 msgstr "Roze"
+
+msgctxt "#30106"
+msgid "Set fan speed"
+msgstr "Ventilatorsnelheid instellen"
+
+msgctxt "#30107"
+msgid "Speed: "
+msgstr "Snelheid: "

@@ -260,3 +260,11 @@ msgstr ""
 msgctxt "#30105"
 msgid "Pink"
 msgstr ""
+
+msgctxt "#30106"
+msgid "Set fan speed"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Speed: "
+msgstr ""
