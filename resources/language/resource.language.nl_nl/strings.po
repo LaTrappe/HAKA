@@ -204,3 +204,59 @@ msgstr "Thuis"
 msgctxt "#30091"
 msgid "Not home"
 msgstr "Afwezig"
+
+msgctxt "#30092"
+msgid "Set brightness"
+msgstr "Helderheid instellen"
+
+msgctxt "#30093"
+msgid "Set light colour"
+msgstr "Lichtkleur instellen"
+
+msgctxt "#30094"
+msgid "Set HVAC mode"
+msgstr "HVAC-modus instellen"
+
+msgctxt "#30095"
+msgid "Set target temperature"
+msgstr "Doeltemperatuur instellen"
+
+msgctxt "#30096"
+msgid "Warm White"
+msgstr "Warm wit"
+
+msgctxt "#30097"
+msgid "Daylight (Cool White)"
+msgstr "Daglicht (koel wit)"
+
+msgctxt "#30098"
+msgid "Red"
+msgstr "Rood"
+
+msgctxt "#30099"
+msgid "Orange"
+msgstr "Oranje"
+
+msgctxt "#30100"
+msgid "Yellow"
+msgstr "Geel"
+
+msgctxt "#30101"
+msgid "Green"
+msgstr "Groen"
+
+msgctxt "#30102"
+msgid "Cyan"
+msgstr "Cyaan"
+
+msgctxt "#30103"
+msgid "Blue"
+msgstr "Blauw"
+
+msgctxt "#30104"
+msgid "Purple"
+msgstr "Paars"
+
+msgctxt "#30105"
+msgid "Pink"
+msgstr "Roze"

@@ -204,3 +204,59 @@ msgstr ""
 msgctxt "#30091"
 msgid "Not home"
 msgstr ""
+
+msgctxt "#30092"
+msgid "Set brightness"
+msgstr ""
+
+msgctxt "#30093"
+msgid "Set light colour"
+msgstr ""
+
+msgctxt "#30094"
+msgid "Set HVAC mode"
+msgstr ""
+
+msgctxt "#30095"
+msgid "Set target temperature"
+msgstr ""
+
+msgctxt "#30096"
+msgid "Warm White"
+msgstr ""
+
+msgctxt "#30097"
+msgid "Daylight (Cool White)"
+msgstr ""
+
+msgctxt "#30098"
+msgid "Red"
+msgstr ""
+
+msgctxt "#30099"
+msgid "Orange"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Yellow"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Green"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Cyan"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Blue"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Purple"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Pink"
+msgstr ""

@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import urllib
@@ -36,6 +37,20 @@ dummyWav = os.path.join(__addonpath__,'resources','1.wav')
 haDomainNames =         ['automation',  'camera',   'climate',  'fan',      'group',    'light',    'person',   'scene',    'script',   'sensor',   'switch',   'vacuum',   ]
 haDomainSettings =      [ False,        False,      False,      False,      False,      False,      False,      False,      False,      False,      False,      False,      ]
 haDomainTranslations =  [30005,         30080,      30006,      30081,      30007,      30008,      30014,      30009,      30010,      30011,      30012,      30013,      ]
+
+lightBrightnessPresets = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+lightColorPresets = [
+    (30096, (255, 166, 87)),   # Warm White
+    (30097, (255, 255, 255)),  # Daylight (Cool White)
+    (30098, (255, 0, 0)),      # Red
+    (30099, (255, 140, 0)),    # Orange
+    (30100, (255, 255, 0)),    # Yellow
+    (30101, (0, 255, 0)),      # Green
+    (30102, (0, 255, 255)),    # Cyan
+    (30103, (0, 0, 255)),      # Blue
+    (30104, (160, 32, 240)),   # Purple
+    (30105, (255, 105, 180)),  # Pink
+]
 
 haServer = __addon__.getSetting('haServer')
 haToken = __addon__.getSetting('haToken')
@@ -127,12 +142,16 @@ def importDomainSettings():
     log('Domain settings imported: ' + str(haDomainSettings))
 
 def getRequest(api_ext):
+    r = None
     try:
         log('Trying to make a get request to ' + api_base + api_ext)
         r = requests.get(api_base + api_ext, headers=headers)
         log(r.json())
         return r.json()
     except:
+        if r is None:
+            show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+            return
         log('Status code error is: ' + str(r.raise_for_status()))
         show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
         log('GetRequest status code is: ' + str(r.status_code))
@@ -144,9 +163,11 @@ def getRequest(api_ext):
             return r
 
 
-def postRequest(api_ext, entity_id):
+def postRequest(api_ext, entity_id, service_data=None):
     try:
-        payload = "{\"entity_id\": \"" + entity_id + "\"}"
+        payload = {'entity_id': entity_id}
+        payload.update(service_data or {})
+        payload = json.dumps(payload)
         log('Trying to make a post request to ' + api_base + api_ext + ' with payload: ' + payload)
         r = requests.post(api_base + api_ext, headers=headers, data=payload)
         log('GetRequest status code is: ' + str(r.status_code))
@@ -156,6 +177,58 @@ def postRequest(api_ext, entity_id):
             show_dialog(__addon__.getLocalizedString(30051)) #Error 405: Method not allowed
     except:
         show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+
+def pickBrightness(entity_id):
+    options = [str(pct) + '%' for pct in lightBrightnessPresets]
+    idx = xbmcgui.Dialog().select(__addon__.getLocalizedString(30092), options)
+    if idx == -1:
+        return
+    postRequest('/services/light/turn_on', entity_id, {'brightness_pct': lightBrightnessPresets[idx]})
+    xbmc.executebuiltin("Container.Refresh")
+
+def pickColor(entity_id):
+    options = [__addon__.getLocalizedString(labelId) for labelId, _ in lightColorPresets]
+    idx = xbmcgui.Dialog().select(__addon__.getLocalizedString(30093), options)
+    if idx == -1:
+        return
+    rgb = list(lightColorPresets[idx][1])
+    postRequest('/services/light/turn_on', entity_id, {'rgb_color': rgb})
+    xbmc.executebuiltin("Container.Refresh")
+
+def pickHvacMode(entity_id):
+    entity = getRequest('/states/' + entity_id)
+    if entity is None or 'attributes' not in entity:
+        show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+        return
+    hvacModes = entity['attributes'].get('hvac_modes', [])
+    if len(hvacModes) == 0:
+        show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+        return
+    idx = xbmcgui.Dialog().select(__addon__.getLocalizedString(30094), hvacModes)
+    if idx == -1:
+        return
+    postRequest('/services/climate/set_hvac_mode', entity_id, {'hvac_mode': hvacModes[idx]})
+    xbmc.executebuiltin("Container.Refresh")
+
+def pickTemperature(entity_id):
+    entity = getRequest('/states/' + entity_id)
+    if entity is None or 'attributes' not in entity:
+        show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+        return
+    attributes = entity['attributes']
+    minTemp = float(attributes.get('min_temp', 7))
+    maxTemp = float(attributes.get('max_temp', 35))
+    step = float(attributes.get('target_temp_step', 0.5))
+    temperatures = []
+    t = minTemp
+    while t <= maxTemp + 0.0001:
+        temperatures.append(round(t, 1))
+        t += step
+    idx = xbmcgui.Dialog().select(__addon__.getLocalizedString(30095), [str(t) for t in temperatures])
+    if idx == -1:
+        return
+    postRequest('/services/climate/set_temperature', entity_id, {'temperature': temperatures[idx]})
+    xbmc.executebuiltin("Container.Refresh")
 
 def browseByDomain():
     log('Browse by domain started')
@@ -277,7 +350,7 @@ def createFolderList(searchKey, response, domain, folderType):
 
             elif domain == 'light':
                 if entity_state == 'on':
-                    if 'brightness' in response[entity]['attributes']:
+                    if response[entity]['attributes'].get('brightness') is not None:
                         brightness = int(round(float(response[entity]['attributes']['brightness']) / 2.56))
                         label = label + markup + __addon__.getLocalizedString(30021) + str(brightness) + '%[/LIGHT]'
                 else:
@@ -347,7 +420,9 @@ def createFolderList(searchKey, response, domain, folderType):
                     icon = os.path.join(imgIconResourcePath,'switch_off.png')
 
             elif domain == 'vacuum': # Each for Start / Stop / Return to base / Locate
-                label = '[B]' + label + '[/B][CR][LIGHT] ' + __addon__.getLocalizedString(30025) + response[entity]['attributes']['status'] + ' - ' + __addon__.getLocalizedString(30026) + str(response[entity]['attributes']['battery_level']) + '[/LIGHT]'
+                vacuumStatus = response[entity]['attributes'].get('status', entity_state)
+                vacuumBattery = response[entity]['attributes'].get('battery_level', '?')
+                label = '[B]' + label + '[/B][CR][LIGHT] ' + __addon__.getLocalizedString(30025) + str(vacuumStatus) + ' - ' + __addon__.getLocalizedString(30026) + str(vacuumBattery) + '[/LIGHT]'
                 url = build_url({'mode': 'service', 'domain': domain, 'entity_id': entity_id, 'state' : entity_state, 'service': 'toggle'})
                 li = xbmcgui.ListItem(label)
                 li.setArt({'icon': icon, 'fanart' : os.path.join(imgFanartResourcePath,'fanart.jpg'), 'poster': icon})
@@ -376,6 +451,18 @@ def createFolderList(searchKey, response, domain, folderType):
                 elif folderType == 'favourites' or folderType == 'widgets':
                     cmd = 'RunPlugin({})'.format(build_url({'mode': 'remFav', 'name': (response[entity]['attributes'].get('friendly_name', entity_id)).encode('utf-8'), 'entity_id': entity_id, 'domain': domain}))
                     contextMenuItems.append([__addon__.getLocalizedString(30071), cmd ])
+
+                if domain == 'light':
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickBrightness', 'entity_id': entity_id}))
+                    contextMenuItems.append([__addon__.getLocalizedString(30092), cmd ])
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickColor', 'entity_id': entity_id}))
+                    contextMenuItems.append([__addon__.getLocalizedString(30093), cmd ])
+                elif domain == 'climate':
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickHvacMode', 'entity_id': entity_id}))
+                    contextMenuItems.append([__addon__.getLocalizedString(30094), cmd ])
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickTemperature', 'entity_id': entity_id}))
+                    contextMenuItems.append([__addon__.getLocalizedString(30095), cmd ])
+
                 li.addContextMenuItems(contextMenuItems)
                 li.setProperty('IsPlayable', 'false')
                 li.setArt({'icon': icon, 'fanart' : os.path.join(imgFanartResourcePath,'fanart.jpg'), 'poster': icon})
@@ -446,6 +533,18 @@ else:
         stream_url = api_base + '/camera_proxy_stream/' + params['entity_id'] + '|Authorization=' + auth_header
         li = xbmcgui.ListItem(path=stream_url)
         xbmc.Player().play(stream_url, li)
+
+    elif mode[0] == 'pickBrightness':
+        pickBrightness(params['entity_id'])
+
+    elif mode[0] == 'pickColor':
+        pickColor(params['entity_id'])
+
+    elif mode[0] == 'pickHvacMode':
+        pickHvacMode(params['entity_id'])
+
+    elif mode[0] == 'pickTemperature':
+        pickTemperature(params['entity_id'])
 
     elif mode[0] == 'service':
         if params['domain'] == 'automation':
