@@ -38,6 +38,8 @@ haDomainNames =         ['automation',  'camera',   'climate',  'fan',      'gro
 haDomainSettings =      [ False,        False,      False,      False,      False,      False,      False,      False,      False,      False,      False,      False,      ]
 haDomainTranslations =  [30005,         30080,      30006,      30081,      30007,      30008,      30014,      30009,      30010,      30011,      30012,      30013,      ]
 
+requestTimeout = 10
+
 lightBrightnessPresets = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 lightColorPresets = [
     (30096, (255, 166, 87)),   # Warm White
@@ -145,7 +147,7 @@ def getRequest(api_ext):
     r = None
     try:
         log('Trying to make a get request to ' + api_base + api_ext)
-        r = requests.get(api_base + api_ext, headers=headers)
+        r = requests.get(api_base + api_ext, headers=headers, timeout=requestTimeout)
         log(r.json())
         return r.json()
     except:
@@ -169,7 +171,7 @@ def postRequest(api_ext, entity_id, service_data=None):
         payload.update(service_data or {})
         payload = json.dumps(payload)
         log('Trying to make a post request to ' + api_base + api_ext + ' with payload: ' + payload)
-        r = requests.post(api_base + api_ext, headers=headers, data=payload)
+        r = requests.post(api_base + api_ext, headers=headers, data=payload, timeout=requestTimeout)
         log('GetRequest status code is: ' + str(r.status_code))
         if r.status_code == 401:
             show_dialog(__addon__.getLocalizedString(30050)) #Error 401: Check your token
@@ -228,6 +230,25 @@ def pickTemperature(entity_id):
     if idx == -1:
         return
     postRequest('/services/climate/set_temperature', entity_id, {'temperature': temperatures[idx]})
+    xbmc.executebuiltin("Container.Refresh")
+
+def pickFanSpeed(entity_id):
+    entity = getRequest('/states/' + entity_id)
+    if entity is None or 'attributes' not in entity:
+        show_dialog(__addon__.getLocalizedString(30052)) #Unknown error: Check IP address or if server is online
+        return
+    step = float(entity['attributes'].get('percentage_step', 25))
+    percentages = []
+    p = step
+    while p <= 100 + 0.0001:
+        percentages.append(int(round(p)))
+        p += step
+    if not percentages or percentages[-1] != 100:
+        percentages.append(100)
+    idx = xbmcgui.Dialog().select(__addon__.getLocalizedString(30106), [str(p) + '%' for p in percentages])
+    if idx == -1:
+        return
+    postRequest('/services/fan/set_percentage', entity_id, {'percentage': percentages[idx]})
     xbmc.executebuiltin("Container.Refresh")
 
 def browseByDomain():
@@ -335,13 +356,20 @@ def createFolderList(searchKey, response, domain, folderType):
                     listing.append((url, li, isFolder))
 
             elif domain == 'climate':
-                label = label + markup + entity_state + ' - '  + __addon__.getLocalizedString(30020) + str(response[entity]['attributes']['current_temperature']) + '[/LIGHT]'
+                currentTemp = response[entity]['attributes'].get('current_temperature')
+                if currentTemp is not None:
+                    label = label + markup + entity_state + ' - '  + __addon__.getLocalizedString(30020) + str(currentTemp) + '[/LIGHT]'
+                else:
+                    label = label + markup + entity_state + '[/LIGHT]'
 
                 if entity_state == 'off':
                     icon = os.path.join(imgIconResourcePath,'climate_off.png')
 
             elif domain == 'fan':
-                if entity_state == 'off':
+                if entity_state == 'on':
+                    if response[entity]['attributes'].get('percentage') is not None:
+                        label = label + markup + __addon__.getLocalizedString(30107) + str(response[entity]['attributes']['percentage']) + '%[/LIGHT]'
+                else:
                     icon = os.path.join(imgIconResourcePath,'fan_off.png')
 
             elif domain == 'group':
@@ -418,6 +446,8 @@ def createFolderList(searchKey, response, domain, folderType):
             elif domain == 'switch':
                 if entity_state == 'off':
                     icon = os.path.join(imgIconResourcePath,'switch_off.png')
+                if response[entity].get('last_changed') is not None:
+                    label = label + markup + __addon__.getLocalizedString(30024) + str(parse_dateTime(response[entity]['last_changed'])) + '[/LIGHT]'
 
             elif domain == 'vacuum': # Each for Start / Stop / Return to base / Locate
                 vacuumStatus = response[entity]['attributes'].get('status', entity_state)
@@ -462,6 +492,9 @@ def createFolderList(searchKey, response, domain, folderType):
                     contextMenuItems.append([__addon__.getLocalizedString(30094), cmd ])
                     cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickTemperature', 'entity_id': entity_id}))
                     contextMenuItems.append([__addon__.getLocalizedString(30095), cmd ])
+                elif domain == 'fan':
+                    cmd = 'RunPlugin({})'.format(build_url({'mode': 'pickFanSpeed', 'entity_id': entity_id}))
+                    contextMenuItems.append([__addon__.getLocalizedString(30106), cmd ])
 
                 li.addContextMenuItems(contextMenuItems)
                 li.setProperty('IsPlayable', 'false')
@@ -545,6 +578,9 @@ else:
 
     elif mode[0] == 'pickTemperature':
         pickTemperature(params['entity_id'])
+
+    elif mode[0] == 'pickFanSpeed':
+        pickFanSpeed(params['entity_id'])
 
     elif mode[0] == 'service':
         if params['domain'] == 'automation':
