@@ -268,3 +268,11 @@ msgstr "Ventilatorsnelheid instellen"
 msgctxt "#30107"
 msgid "Speed: "
 msgstr "Snelheid: "
+
+msgctxt "#30110"
+msgid "Camera streams"
+msgstr "Camerastreams"
+
+msgctxt "#30111"
+msgid "Use hardware decoding for camera streams (Amlogic/CoreELEC only; enabling may cause playback problems)"
+msgstr "Hardwaredecodering gebruiken voor camerastreams (alleen Amlogic/CoreELEC; inschakelen kan afspeelproblemen veroorzaken)"

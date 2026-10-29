@@ -96,6 +96,68 @@ def log(txt, loglevel=xbmc.LOGDEBUG):
         message = u'%s: %s' % (__addonid__, txt)
         xbmc.log(msg=message, level=loglevel)
 
+# Amlogic (CoreELEC) only: other platforms do not have this setting, so the override is skipped there
+HW_DECODING_SETTING = 'videoplayer.useamcodec'
+HW_OVERRIDE_PROPERTY = 'haka.hwDecodingOverride'
+HW_OVERRIDE_HANDOFF_SECONDS = 5
+HW_OVERRIDE_START_TIMEOUT = 60
+
+def getKodiSetting(setting):
+    payload = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.GetSettingValue', 'params': {'setting': setting}}
+    response = json.loads(xbmc.executeJSONRPC(json.dumps(payload)))
+    return response.get('result', {}).get('value')
+
+def setKodiSetting(setting, value):
+    payload = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.SetSettingValue', 'params': {'setting': setting, 'value': value}}
+    xbmc.executeJSONRPC(json.dumps(payload))
+
+class HwDecodingRestorer(xbmc.Player):
+    def __init__(self):
+        super().__init__()
+        self.finished = False
+
+    def restore(self):
+        lastOverride = float(xbmcgui.Window(10000).getProperty(HW_OVERRIDE_PROPERTY) or 0)
+        if time.time() - lastOverride < HW_OVERRIDE_HANDOFF_SECONDS:
+            return  # another camera stream was just started and still needs the override
+        setKodiSetting(HW_DECODING_SETTING, True)
+        self.finished = True
+
+    def onPlayBackStopped(self):
+        self.restore()
+
+    def onPlayBackEnded(self):
+        self.restore()
+
+    def onPlayBackError(self):
+        self.restore()
+
+def playCameraStream(stream_url, li):
+    # Hardware decoding stalls on the slow MJPEG camera streams, so turn it off while the stream plays
+    window = xbmcgui.Window(10000)
+    overrideHw = __addon__.getSetting('hwDecoding') != 'true'
+    if overrideHw:
+        window.setProperty(HW_OVERRIDE_PROPERTY, str(time.time()))
+    if not overrideHw or getKodiSetting(HW_DECODING_SETTING) is not True:
+        xbmc.Player().play(stream_url, li)
+        return
+
+    setKodiSetting(HW_DECODING_SETTING, False)
+    player = HwDecodingRestorer()
+    monitor = xbmc.Monitor()
+    player.play(stream_url, li)
+    # The script has to stay alive to get the playback callbacks and to restore the setting afterwards
+    idleSince = time.time()
+    while not monitor.abortRequested() and not player.finished:
+        monitor.waitForAbort(1)
+        if player.isPlaying():
+            idleSince = None
+        elif idleSince is None:
+            idleSince = time.time()
+        elif time.time() - idleSince > HW_OVERRIDE_START_TIMEOUT:
+            break
+    setKodiSetting(HW_DECODING_SETTING, True)
+
 def read_favourites():
     favourites = []
     if os.stat(fileHakaFavourites).st_size > 0:
@@ -565,7 +627,7 @@ else:
         auth_header = urllib.parse.quote('Bearer ' + haToken, safe='')
         stream_url = api_base + '/camera_proxy_stream/' + params['entity_id'] + '|Authorization=' + auth_header
         li = xbmcgui.ListItem(path=stream_url)
-        xbmc.Player().play(stream_url, li)
+        playCameraStream(stream_url, li)
 
     elif mode[0] == 'pickBrightness':
         pickBrightness(params['entity_id'])

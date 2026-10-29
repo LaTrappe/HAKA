@@ -20,6 +20,9 @@
 	<category label="30017">
 		<setting id="useFavourites" type="bool" label="30018" default="true"/>
 	</category>
+	<category label="30110">
+		<setting id="hwDecoding" type="bool" label="30111" default="false"/>
+	</category>
 	<category label="30015">
 		<setting id="logEnabled" type="bool" label="30016" default="false"/>
 	</category>

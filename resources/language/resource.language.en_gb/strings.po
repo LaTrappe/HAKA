@@ -268,3 +268,11 @@ msgstr ""
 msgctxt "#30107"
 msgid "Speed: "
 msgstr ""
+
+msgctxt "#30110"
+msgid "Camera streams"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Use hardware decoding for camera streams (Amlogic/CoreELEC only; enabling may cause playback problems)"
+msgstr ""
