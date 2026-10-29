@@ -1,3 +1,4 @@
+import fnmatch
 import json
 import os
 import sys
@@ -205,6 +206,14 @@ def importDomainSettings():
         haDomainSettings[11] = True
     log('Domain settings imported: ' + str(haDomainSettings))
 
+def isEntityExcluded(entity_id):
+    excludedEntities = __addon__.getSetting('excludedEntities')
+    for pattern in excludedEntities.split(','):
+        pattern = pattern.strip()
+        if pattern and fnmatch.fnmatch(entity_id, pattern):
+            return True
+    return False
+
 def getRequest(api_ext):
     r = None
     try:
@@ -389,8 +398,10 @@ def createFolderList(searchKey, response, domain, folderType):
         markup = '[CR][LIGHT]'
     for entity in range(len(response)):
         if searchKey in response[entity]['entity_id']:
-            contextMenuItems = []
             entity_id = response[entity]['entity_id']
+            if isEntityExcluded(entity_id):
+                continue
+            contextMenuItems = []
             entity_state =response[entity]['state']
 
             if 'friendly_name' in response[entity]['attributes']:

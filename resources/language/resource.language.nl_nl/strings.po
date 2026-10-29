@@ -269,6 +269,14 @@ msgctxt "#30107"
 msgid "Speed: "
 msgstr "Snelheid: "
 
+msgctxt "#30108"
+msgid "Entity filter"
+msgstr "Entiteitenfilter"
+
+msgctxt "#30109"
+msgid "Excluded entities (comma separated, wildcards allowed, e.g. sensor.old_*)"
+msgstr "Uitgesloten entiteiten (gescheiden door komma's, jokertekens toegestaan, bijv. sensor.old_*)"
+
 msgctxt "#30110"
 msgid "Camera streams"
 msgstr "Camerastreams"

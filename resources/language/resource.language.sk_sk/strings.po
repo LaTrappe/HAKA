@@ -269,6 +269,14 @@ msgctxt "#30107"
 msgid "Speed: "
 msgstr "Rýchlosť: "
 
+msgctxt "#30108"
+msgid "Entity filter"
+msgstr "Filter entít"
+
+msgctxt "#30109"
+msgid "Excluded entities (comma separated, wildcards allowed, e.g. sensor.old_*)"
+msgstr "Vylúčené entity (oddelené čiarkou, povolené zástupné znaky, napr. sensor.old_*)"
+
 msgctxt "#30110"
 msgid "Camera streams"
 msgstr "Kamerové streamy"
