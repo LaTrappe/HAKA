@@ -50,6 +50,31 @@ Add home assistant entities in a favorites folder which can be added to Kodi mai
 
 **Change log**
 
+Version 1.3.7 (2026-10-29)
+- Added entity filter setting: entities matching the configured patterns (wildcards allowed) are hidden from the lists
+
+Version 1.3.6 (2026-10-29)
+- Added Slovak translation
+
+Version 1.3.5 (2026-10-29)
+- Added setting to enable hardware decoding for camera streams (Amlogic/CoreELEC only). It is off by default because hardware decoding can stall on slow MJPEG camera streams and freeze the Kodi UI
+
+Version 1.3.4 (2026-09-02)
+- Added context menu action to set fan speed
+- Fixed issue: Crash when a climate entity does not report current_temperature
+- Added request timeout so the addon no longer hangs if the HA server is unreachable
+- Switches now show their last changed time
+
+Version 1.3.3 (2026-08-01)
+- Fixed issue: Crash when a light is on but reports no brightness value
+- Fixed issue: Crash when a vacuum entity does not expose status/battery_level attributes
+
+Version 1.3.2 (2026-08-01)
+- Added context menu actions to set light brightness and colour, and to set climate HVAC mode and target temperature
+
+Version 1.3.1 (2026-08-01)
+- Fixed issue: Crash when adding/removing a favourite for an entity without a friendly name (e.g. restored/unavailable entities)
+
 Version 1.3.0 (2026-07-16)
 - Support for playing camera stream
 - Code cleanup
